@@ -96,7 +96,7 @@ static char	*ft_read_file(int fd, char *buffer)
 		if (read_bytes > 0)
 		{
 			content_file[read_bytes] = '\0';
-			buffer = ft_strjoin(buffer, content_file);
+			buffer = ft_strjoin_gnl(buffer, content_file);
 		}
 	}
 	free(content_file);

@@ -62,7 +62,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (size_src);
 }
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*ft_strjoin_gnl(char *s1, char const *s2)
 {
 	char	*join;
 	size_t	i;
