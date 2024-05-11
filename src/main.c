@@ -6,42 +6,41 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 20:35:01 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/07 00:04:19 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:36:17 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "../mlx/mlx.h"
-
-void	draw_square(t_mlx mlx, t_pos pos, t_square square)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < square.size)
-	{
-		j = 0;
-		while (j < square.size)
-		{
-			mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, pos.x + i, pos.y + j,
-					square.color);
-			j++;
-		}
-		i++;
-	}
-}
+#include "so_long.h"
 
 int	main(void)
 {
-	t_mlx mlx;
-	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 500, 500, "test window");
-	t_pos pos = {100, 100};
-	t_square square = {pos, 50, 0xFFFFFF};
+    t_map map;
+    char *file_name = "./maps/map1.ber";
 
-	draw_square(mlx, pos, square);
+    ft_get_map_dimensions(file_name, &map);
+    map.map = ft_read_map(file_name, &map);
 
-	mlx_loop(mlx.mlx_ptr);
-	return (0);
+    if (map.map == NULL) {
+        printf("Error al leer el mapa\n");
+        return 1;
+    }
+
+    printf("Ancho del mapa: %d\n", map.width);
+    printf("Altura del mapa: %d\n", map.height);
+    printf("Contenido del mapa:\n");
+    for (int y = 0; y < map.height; y++) {
+        for (int x = 0; x < map.width; x++) {
+            printf("%c ", map.map[y][x]);
+        }
+        printf("\n");
+    }
+
+    // Liberar memoria utilizada para almacenar el mapa
+    for (int i = 0; i < map.height; i++) {
+        free(map.map[i]);
+    }
+    free(map.map);
+
+    return 0;
 }
