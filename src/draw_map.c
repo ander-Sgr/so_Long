@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:46:42 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/14 17:09:59 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:17:26 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_map(t_mlx *mlx, t_map *map)
 			if (map->map[i][j] == '1')
 				file_name = "./textures/wall.xpm";
 			else if (map->map[i][j] == '0')
-				file_name = "./textures/floor_2.xpm";
+				file_name = "./textures/floor.xpm";
 			draw_xpm(mlx, file_name, map_x, map_y);
 		}
 	}
