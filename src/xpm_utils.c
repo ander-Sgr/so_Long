@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:06:00 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/12 20:58:55 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:07:22 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ void *ft_load_xpm(t_mlx *mlx, char *file_name, int *width, int *height) {
         printf("Error al cargar la imagen XPM\n");
         return (NULL);
     }
-
-    // Asignar los valores de anchura y altura de la imagen a la estructura t_mlx
-
-
     return (img);
 }
 void	draw_xpm(t_mlx *mlx, char *file_name, int pos_x, int pos_y)
@@ -40,5 +36,5 @@ void	draw_xpm(t_mlx *mlx, char *file_name, int pos_x, int pos_y)
 		printf("Error al cargar la imagen XPM\n");
 		return ;
 	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img_ptr, pos_x, pos_y);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, img_ptr, pos_x * TILE_SIZE, pos_y * TILE_SIZE);
 }
