@@ -6,13 +6,13 @@
 #    By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 23:19:11 by aestrell          #+#    #+#              #
-#    Updated: 2024/05/11 16:24:16 by aestrell         ###   ########.fr        #
+#    Updated: 2024/05/12 20:01:33 by aestrell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS = ./src/main.c ./src/read_map.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
+SRCS = ./src/main.c ./src/read_map.c ./src/draw_map.c ./src/xpm_utils.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 
 CC = gcc
 CFLAGS = -Wall  -Wextra
