@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:46:42 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/17 00:42:08 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:46:18 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,24 @@
 // x - width
 // y - height
 
-static void	ft_check_elements_map(t_game *game, int x, int y)
+void	ft_check_elements_map(t_game *game, int x, int y)
 {
+	printf("siii");
+	if (game->map.map[x][y] == '1')
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
+				game->wall.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+	else if (game->map.map[x][y] == '0')
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
+				game->floor.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+	else if (game->map.map[x][y] == 'P')
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
+				game->character.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 }
 
 void	ft_draw_map(t_game *game)
 {
-	char	*file_name;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < game->map.height)
@@ -31,11 +40,7 @@ void	ft_draw_map(t_game *game)
 		j = 0;
 		while (j < game->map.width)
 		{
-			if (game->map.map[i][j] == '1')
-				file_name = "./textures/wall.xpm";
-			else if (game->map.map[i][j] == '0')
-				file_name = "./textures/floor.xpm";
-			draw_xpm(game->mlx, file_name, j, i);
+			ft_check_elements_map(game, i, j);
 			j++;
 		}
 		i++;
