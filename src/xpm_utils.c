@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:06:00 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/22 02:48:21 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/23 23:59:30 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,19 @@ static void	ft_clean_xpm(t_game *game, t_img **images, int img_count)
 		}
 		i++;
 	}
+	if (game->mlx.win_ptr)
+	{
+		mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_ptr);
+		game->mlx.win_ptr = NULL;
+	}
+	if (game->mlx.mlx_ptr)
+	{
+		free(game->mlx.mlx_ptr);
+		game->mlx.win_ptr = NULL;
+	}
 }
 
-int	ft_check_errors_xpm(t_game *game)
+static int	ft_check_errors_xpm(t_game *game)
 {
 	int		img_count;
 	int		err_count;
@@ -54,9 +64,7 @@ int	ft_check_errors_xpm(t_game *game)
 	err_count = 0;
 	images = ft_storage_images(game, img_count);
 	if (!images)
-	{
-		return (0, free(images));
-	}
+		return (0);
 	for (i = 0; i < img_count; i++)
 	{
 		if (!images[i]->img_ptr)
@@ -64,24 +72,7 @@ int	ft_check_errors_xpm(t_game *game)
 	}
 	if (err_count > 0)
 	{
-		for (i = 0; i < img_count; i++)
-		{
-			if (images[i]->img_ptr)
-			{
-				mlx_destroy_image(game->mlx.mlx_ptr, images[i]->img_ptr);
-				images[i]->img_ptr = NULL;
-			}
-		}
-		if (game->mlx.win_ptr)
-		{
-			mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_ptr);
-			game->mlx.win_ptr = NULL;
-		}
-		if (game->mlx.mlx_ptr)
-		{
-			free(game->mlx.mlx_ptr);
-			game->mlx.mlx_ptr = NULL;
-		}
+		ft_clean_xpm(game, images, img_count);
 		printf("Could not load all xpm files\n");
 		free(images);
 		return (0);
