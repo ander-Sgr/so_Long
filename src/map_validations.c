@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validatons.c                                   :+:      :+:    :+:   */
+/*   map_validations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 23:07:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/26 01:10:39 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:49:34 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	*ft_check_file(char *file_map)
+int	ft_is_valid_ext(char *file_map)
 {
-    /**
-     * podrimoas extreaer los ultmos 3 caracteres de la ruta del mapa 
-     * verificamos que coincida con la ext .bet si coincide devolvemos true si no
-     * false
-     */
-    
-    printf("file path: ", file_map);
-    
-    
+	char	dot;
+	char	*ext;
+	char	*result;
 
-
+	dot = '.';
+	ext = ".ber";
+	if (file_map == NULL)
+		return (0);
+	result = strrchr(file_map, dot);
+	if (result != NULL && strcmp(ext, result) == 0)
+	{
+		return (1);
+	}
+	return (0);
 }
+/*
+void	ft_is_valid_map(char element, t_game *game)
+{
 
-// to do verifiar la estructura del mapa por ej 1ra  linea es vacia o no 
+} */
+
+// to do verifiar la estructura del mapa por ej 1ra  linea es vacia o no
