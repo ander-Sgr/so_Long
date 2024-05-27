@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 20:35:01 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/24 00:50:41 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:48:38 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,35 @@ int	main(void)
 	t_game	game;
 	int		tile_width;
 	int		tile_height;
+	char	*file_map;
 
+	file_map = "./maps/map1.ber";
+	// ft_check_ext_file(file_map);
+	if (!ft_is_valid_ext(file_map))
+	{
+		printf("incorrect");
+	}
 	// Inicializar el juego
 	initialize_game(&game);
 	// Inicializar MLX
 	game.mlx.mlx_ptr = mlx_init();
 	// Inicializar el mapa
-	ft_init_map("./maps/map1.er", &game);
-	if (!game.map.map)
+	if (ft_init_map(file_map, &game))
 	{
-		return (1);
+		tile_width = game.map.width * TILE_SIZE;
+		tile_height = game.map.height * TILE_SIZE;
+		game.mlx.win_ptr = mlx_new_window(game.mlx.mlx_ptr, tile_width,
+				tile_height, "so_long");
+		if (game.mlx.win_ptr == NULL)
+		{
+			free(game.mlx.mlx_ptr);
+		}
+		// Inicializar imágenes & mapa
+		if (ft_init_images(&game) && ft_draw_map(&game))
+		{
+			mlx_loop(game.mlx.mlx_ptr);
+		}
 	}
 	// Crear una ventana
-	tile_width = game.map.width * TILE_SIZE;
-	tile_height = game.map.height * TILE_SIZE;
-	game.mlx.win_ptr = mlx_new_window(game.mlx.mlx_ptr, tile_width, tile_height,
-			"so_long");
-	if (game.mlx.win_ptr == NULL)
-	{
-		free(game.mlx.mlx_ptr);
-		return (1);
-	}
-	// Inicializar imágenes
-	if (ft_init_images(&game))
-	{
-		ft_draw_map(&game);
-		mlx_loop(game.mlx.mlx_ptr);
-	}
-	return (0);
+	return (1);
 }

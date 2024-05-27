@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 01:01:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/24 00:51:42 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/27 23:48:02 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_get_map_dimensions(char *file_map, t_game *game)
 	width = 0;
 	height = 0;
 	fd = open(file_map, O_RDONLY);
-	if (fd < 0)
+	if (fd <= 0)
 		return ;
 	while (file_map != NULL && line != NULL)
 	{
@@ -66,7 +66,7 @@ static char	**ft_read_map(char *file_map, t_game *game)
 	return (game->map.map);
 }
 
-static void	ft_cleanup_map(t_game *game)
+void	ft_cleanup_map(t_game *game)
 {
 	int	i;
 
@@ -75,7 +75,8 @@ static void	ft_cleanup_map(t_game *game)
 		i = 0;
 		while (i < game->map.height)
 		{
-			free(game->map.map[i]);
+			if (game->map.map[i])
+				free(game->map.map[i]);
 			i++;
 		}
 		free(game->map.map);
@@ -83,17 +84,16 @@ static void	ft_cleanup_map(t_game *game)
 	}
 }
 
-void	ft_init_map(char *file_map, t_game *game)
+t_game	*ft_init_map(char *file_map, t_game *game)
 {
+	game->map.map = NULL;
 	ft_get_map_dimensions(file_map, game);
-	if (game->map.width < 3 || game->map.height < 3)
-	{
-		ft_cleanup_map(game);
-	}
 	game->map.map = ft_read_map(file_map, game);
 	if (game->map.map == NULL)
 	{
+		printf("Error: Failed to read the map.\n");
 		ft_cleanup_map(game);
-		fprintf(stderr, "Error reading map file\n");
+		return (0);
 	}
+	return (game);
 }
