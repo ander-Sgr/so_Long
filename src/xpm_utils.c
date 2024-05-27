@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:06:00 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/23 23:59:30 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:44:06 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ static int	ft_check_errors_xpm(t_game *game)
 	images = ft_storage_images(game, img_count);
 	if (!images)
 		return (0);
-	for (i = 0; i < img_count; i++)
+	while (i < img_count)
 	{
 		if (!images[i]->img_ptr)
 			err_count++;
+		i++;
 	}
 	if (err_count > 0)
 	{
