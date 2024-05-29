@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/27 23:42:47 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:04:24 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ typedef struct s_game
 t_game			*ft_init_map(char *file_map, t_game *game);
 int				ft_draw_map(t_game *game);
 t_game			*ft_init_images(t_game *game);
-int				ft_is_valid_ext(char *file_map);
+int				ft_is_valid_map(t_game *game, char *file_map);
+
 #endif

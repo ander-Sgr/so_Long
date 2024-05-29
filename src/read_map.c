@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 01:01:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/27 23:48:02 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:07:16 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,8 @@ t_game	*ft_init_map(char *file_map, t_game *game)
 	game->map.map = NULL;
 	ft_get_map_dimensions(file_map, game);
 	game->map.map = ft_read_map(file_map, game);
-	if (game->map.map == NULL)
+	if (game->map.map == NULL || !ft_is_valid_map(game, file_map))
 	{
-		printf("Error: Failed to read the map.\n");
 		ft_cleanup_map(game);
 		return (0);
 	}

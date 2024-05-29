@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 20:35:01 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/27 23:48:38 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:07:47 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,14 @@ int	main(void)
 	char	*file_map;
 
 	file_map = "./maps/map1.ber";
-	// ft_check_ext_file(file_map);
-	if (!ft_is_valid_ext(file_map))
-	{
-		printf("incorrect");
-	}
 	// Inicializar el juego
 	initialize_game(&game);
 	// Inicializar MLX
 	game.mlx.mlx_ptr = mlx_init();
+	if (game.mlx.mlx_ptr == NULL)
+	{
+		printf("Error initializing MLX\n");
+	}
 	// Inicializar el mapa
 	if (ft_init_map(file_map, &game))
 	{
@@ -63,14 +62,14 @@ int	main(void)
 				tile_height, "so_long");
 		if (game.mlx.win_ptr == NULL)
 		{
+			printf("Error creating window\n");
 			free(game.mlx.mlx_ptr);
 		}
 		// Inicializar imágenes & mapa
 		if (ft_init_images(&game) && ft_draw_map(&game))
 		{
+			printf("width %d - heigth %d\n", game.map.width, game.map.height);
 			mlx_loop(game.mlx.mlx_ptr);
 		}
 	}
-	// Crear una ventana
-	return (1);
 }
