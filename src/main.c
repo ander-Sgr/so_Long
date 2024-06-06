@@ -6,11 +6,17 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 20:35:01 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/29 19:07:47 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:02:04 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	init_pos(t_pos *pos)
+{
+	pos->x = 0;
+	pos->y = 0;
+}
 
 void	initialize_game(t_game *game)
 {
@@ -24,6 +30,11 @@ void	initialize_game(t_game *game)
 	game->map.map = NULL;
 	game->map.width = 0;
 	game->map.height = 0;
+	game->map.character_count = 0;
+	game->map.exit_count = 0;
+	game->map.item_count = 0;
+	game->map.found_exit = 0;
+	game->map.collected_item = 0;
 	// Inicialización de las imágenes (sin cargar aún)
 	game->wall.img_ptr = NULL;
 	game->wall.addr = NULL;
@@ -36,10 +47,10 @@ void	initialize_game(t_game *game)
 	game->exit.img_ptr = NULL;
 	game->exit.addr = NULL;
 }
-
 int	main(void)
 {
 	t_game	game;
+	t_pos	pos;
 	int		tile_width;
 	int		tile_height;
 	char	*file_map;
@@ -47,6 +58,7 @@ int	main(void)
 	file_map = "./maps/map1.ber";
 	// Inicializar el juego
 	initialize_game(&game);
+	init_pos(&pos);
 	// Inicializar MLX
 	game.mlx.mlx_ptr = mlx_init();
 	if (game.mlx.mlx_ptr == NULL)
@@ -68,7 +80,7 @@ int	main(void)
 		// Inicializar imágenes & mapa
 		if (ft_init_images(&game) && ft_draw_map(&game))
 		{
-			printf("width %d - heigth %d\n", game.map.width, game.map.height);
+			printf("\nwidth %d - heigth %d\n", game.map.width, game.map.height);
 			mlx_loop(game.mlx.mlx_ptr);
 		}
 	}

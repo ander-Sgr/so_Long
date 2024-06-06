@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/29 19:04:24 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:09:42 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct s_map
 	int			height;
 	int			character_count;
 	int			exit_count;
+	int			item_count;
+	int			found_exit;
+	int			collected_item;
 }				t_map;
 
 typedef struct s_mlx
@@ -79,6 +82,7 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_player	player;
 	t_map		map;
+	t_pos		pos;
 	t_img		wall;
 	t_img		floor;
 	t_img		character;
@@ -90,5 +94,8 @@ t_game			*ft_init_map(char *file_map, t_game *game);
 int				ft_draw_map(t_game *game);
 t_game			*ft_init_images(t_game *game);
 int				ft_is_valid_map(t_game *game, char *file_map);
+int				flood_fill(t_game *game, t_pos *start_pos);
+t_game			*ft_element_pos(t_game *game);
+int				ft_check_elements_map(t_game *game);
 
 #endif

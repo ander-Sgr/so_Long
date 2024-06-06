@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:46:42 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/27 23:47:45 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:11:20 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,27 @@ static void	ft_draw_elements(t_game *game, int x, int y)
 				game->exit.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 }
 
-static int	ft_is_valid_element(char element)
+static int	ft_is_valid_element(t_game *game, char element)
 {
 	char	*valid_elements;
 
 	valid_elements = "10PCE";
+	if (element == 'P')
+		game->map.character_count++;
+	if (element == 'E')
+		game->map.exit_count++;
+	if (element == 'C')
+		game->map.item_count++;
 	if (!strchr(valid_elements, element))
 	{
-		printf("Error: elements on the map are not valid! verify just content 10PCE");
+		printf("Error: elements on the map are \
+			not valid! verify just content 10PCE\n");
 		return (0);
 	}
 	return (1);
 }
 
-static int	ft_check_elements_map(t_game *game)
+int	ft_check_elements_map(t_game *game)
 {
 	int	i;
 	int	j;
@@ -55,11 +62,28 @@ static int	ft_check_elements_map(t_game *game)
 		j = 0;
 		while (game->map.map[i][j] != '\0' && game->map.map[i][j] != '\n')
 		{
-			if (!ft_is_valid_element(game->map.map[i][j]))
+			if (!ft_is_valid_element(game, game->map.map[i][j]))
 				return (0);
 			j++;
 		}
 		i++;
+	}
+	if (game->map.character_count > 1 || game->map.exit_count > 1)
+	{
+		printf("Error: Verify the number of players & exits:\n");
+		return (0);
+	}
+	return (1);
+}
+
+static int	ft_check_number_elements(t_game *game)
+{
+	if (game->map.character_count < 1 || game->map.exit_count < 1
+		|| game->map.item_count < 1)
+	{
+		printf("Error: The should contain \
+		a minimum 1 player 1 exit & 1 item\n");
+		return (0);
 	}
 	return (1);
 }
@@ -70,6 +94,8 @@ int	ft_draw_map(t_game *game)
 	int	j;
 
 	if (!(ft_check_elements_map(game)))
+		return (0);
+	if (!ft_check_number_elements(game))
 		return (0);
 	i = 0;
 	while (i < game->map.height)
@@ -82,5 +108,6 @@ int	ft_draw_map(t_game *game)
 		}
 		i++;
 	}
+	printf("%d", game->map.item_count);
 	return (1);
 }

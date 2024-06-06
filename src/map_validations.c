@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 23:07:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/05/29 19:13:39 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/04 01:32:30 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	ft_check_borders_map(t_game *game)
 			if (i == 0 || j == 0 || j == game->map.width - 1
 				|| i == game->map.height - 1)
 			{
-				if (game->map.map[i][j] == '1')
+				if (game->map.map[i][j] != '1')
 				{
 					return (0);
 				}
@@ -97,6 +97,8 @@ int	ft_is_valid_map(t_game *game, char *file_map)
 		printf("Error: The map should be sorrounded by walls\n");
 		return (0);
 	}
+	if (!ft_element_pos(game))
+		return (0);
 	return (1);
 }
 /*
