@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 01:01:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/06 22:11:37 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/09 20:39:53 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,26 +86,10 @@ void	ft_cleanup_map(t_game *game)
 
 t_game	*ft_init_map(char *file_map, t_game *game)
 {
-	int		found_exit;
-	t_pos	start_pos;
-
-	game->map.map = NULL;
 	ft_get_map_dimensions(file_map, game);
 	game->map.map = ft_read_map(file_map, game);
-	ft_element_pos(game);
 	if (game->map.map == NULL || !ft_is_valid_map(game, file_map))
 	{
-		ft_cleanup_map(game);
-		return (NULL);
-	}
-	printf("Pos en init map x %d - y %d\n", game->player.pos_player.x,
-			game->player.pos_player.y);
-	start_pos = game->player.pos_player;
-	found_exit = flood_fill(game, &start_pos);
-	printf("%d", found_exit);
-	if (!found_exit)
-	{
-		printf("Error: no se pudo encontrar la salida en el mapa.\n");
 		ft_cleanup_map(game);
 		return (NULL);
 	}
