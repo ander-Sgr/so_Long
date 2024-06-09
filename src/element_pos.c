@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 21:28:12 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/06 17:48:29 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/09 20:17:13 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_pos_player(t_game *game, int i, int j)
 {
 	game->player.pos_player.x = i;
 	game->player.pos_player.y = j;
-	
 }
 
 t_game	*ft_element_pos(t_game *game)

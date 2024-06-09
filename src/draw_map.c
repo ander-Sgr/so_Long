@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:46:42 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/06 22:11:20 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/09 20:37:38 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,12 @@ int	ft_draw_map(t_game *game)
 	int	i;
 	int	j;
 
-	if (!(ft_check_elements_map(game)))
+	if (!ft_check_elements_map(game))
 		return (0);
 	if (!ft_check_number_elements(game))
+		return (0);
+	ft_element_pos(game);
+	if (!ft_check_pathfinder(game, &game->player.pos_player))
 		return (0);
 	i = 0;
 	while (i < game->map.height)
@@ -108,6 +111,5 @@ int	ft_draw_map(t_game *game)
 		}
 		i++;
 	}
-	printf("%d", game->map.item_count);
 	return (1);
 }

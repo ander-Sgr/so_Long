@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/06 22:09:42 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/09 20:11:37 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_img
 	void		*img_ptr;
 	char		*img_path;
 	char		*addr;
-	t_pos		pos_img;
 	int			width;
 	int			heigth;
 	int			tile_size;
@@ -94,8 +93,16 @@ t_game			*ft_init_map(char *file_map, t_game *game);
 int				ft_draw_map(t_game *game);
 t_game			*ft_init_images(t_game *game);
 int				ft_is_valid_map(t_game *game, char *file_map);
-int				flood_fill(t_game *game, t_pos *start_pos);
+int				ft_check_pathfinder(t_game *game, t_pos *start_pos);
 t_game			*ft_element_pos(t_game *game);
 int				ft_check_elements_map(t_game *game);
+
+void			ft_init_wall(t_game *game);
+void			ft_init_floor(t_game *game);
+void			ft_init_character(t_game *game);
+void			ft_init_item(t_game *game);
+void			ft_init_exit(t_game *game);
+
+void			ft_init_vars(t_game *game);
 
 #endif
