@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/09 20:11:37 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/10 00:56:59 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 # ifndef TILE_SIZE
 #  define TILE_SIZE 64
 # endif
+
+# define K_A 97
+# define K_S 115
+# define K_D 100
+# define K_W 119
+
+# define K_ESC 65307
 
 typedef struct s_pos
 {
@@ -104,5 +111,7 @@ void			ft_init_item(t_game *game);
 void			ft_init_exit(t_game *game);
 
 void			ft_init_vars(t_game *game);
+
+int				handle_keypress(int keysym, t_game *data);
 
 #endif
