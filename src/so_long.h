@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/10 19:50:20 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/11 00:42:26 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_map
 	int			item_count;
 	int			found_exit;
 	int			collected_item;
+	t_pos		exit_pos;
 }				t_map;
 
 typedef struct s_mlx
@@ -68,6 +69,7 @@ typedef struct s_player
 	t_pos		pos_player;
 	int			items_recollected;
 	int			mov_count;
+	char		current_tile;
 }				t_player;
 
 typedef struct s_img

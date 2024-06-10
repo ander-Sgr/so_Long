@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 19:37:27 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/09 20:05:25 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/10 22:49:39 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	ft_init_player_vars(t_game *game)
 	game->player.pos_player.y = 0;
 	game->player.items_recollected = 0;
 	game->player.mov_count = 0;
+	game->player.current_tile = ' ';
 }
 static void	ft_init_images_vars(t_game *game)
 {
