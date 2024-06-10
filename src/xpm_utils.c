@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:06:00 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/09 16:08:04 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:25:01 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ t_game	*ft_init_images(t_game *game)
 		!ft_load_xpm(game, &game->floor, "./textures/floor.xpm") ||
 		!ft_load_xpm(game, &game->character, "./textures/character.xpm") ||
 		!ft_load_xpm(game, &game->item, "./textures/item.xpm") ||
-		!ft_load_xpm(game, &game->exit, "./textures/exit.xpm"))
+		!ft_load_xpm(game, &game->exit, "./textures/exit.xpm") ||
+		!ft_load_xpm(game, &game->closed_door, "./textures/closed_door.xpm"))
 		return (0);
 
 	return (game);
