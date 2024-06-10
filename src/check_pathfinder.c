@@ -6,30 +6,29 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:23:14 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/09 15:03:42 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/10 23:33:16 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// todo  a func for verify a valid path for end the game
 static int	ft_is_valid_position(t_game *game, t_pos *pos)
 {
-	if (pos->x >= 0 && pos->x < game->map.height && pos->y >= 0
-		&& pos->y < game->map.width)
+	if (pos->x >= 0 && pos->x < game->map.width && pos->y >= 0
+		&& pos->y < game->map.height)
 		return (1);
 	return (0);
 }
 
 static int	ft_is_passable_cell(t_game *game, t_pos *pos)
 {
-	if (game->map.map[pos->x][pos->y] == '0'
-		|| game->map.map[pos->x][pos->y] == 'C'
-		|| game->map.map[pos->x][pos->y] == 'E'
-		|| game->map.map[pos->x][pos->y] == 'P')
+	if (game->map.map[pos->y][pos->x] == '0'
+		|| game->map.map[pos->y][pos->x] == 'C'
+		|| game->map.map[pos->y][pos->x] == 'E'
+		|| game->map.map[pos->y][pos->x] == 'P')
 		return (1);
-	printf("Impassable cell at x: %d, y: %d, cell: %c\n", pos->x, pos->y,
-			game->map.map[pos->x][pos->y]);
+	printf("Impassable cell at x: %d, y: %d, cell: %c\n", pos->y, pos->x,
+			game->map.map[pos->y][pos->x]);
 	return (0);
 }
 
@@ -38,13 +37,13 @@ static void	ft_recursive_path_search(t_game *game, t_pos *pos, int **visited)
 	t_pos	directions[4];
 	int		i;
 
-	if (!ft_is_valid_position(game, pos) || visited[pos->x][pos->y] ||
+	if (!ft_is_valid_position(game, pos) || visited[pos->y][pos->x] ||
 		!ft_is_passable_cell(game, pos))
 		return ;
-	visited[pos->x][pos->y] = 1;
-	if (game->map.map[pos->x][pos->y] == 'E')
+	visited[pos->y][pos->x] = 1;
+	if (game->map.map[pos->y][pos->x] == 'E')
 		game->map.found_exit = 1;
-	if (game->map.map[pos->x][pos->y] == 'C')
+	if (game->map.map[pos->y][pos->x] == 'C')
 		game->map.collected_item++;
 	directions[0] = (t_pos){pos->x + 1, pos->y};
 	directions[1] = (t_pos){pos->x - 1, pos->y};
