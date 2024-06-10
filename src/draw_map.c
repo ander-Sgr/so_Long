@@ -6,13 +6,13 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:46:42 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/09 20:37:38 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:57:49 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_draw_elements(t_game *game, int x, int y)
+void	ft_draw_elements(t_game *game, int x, int y)
 {
 	if (game->map.map[x][y] == '1')
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
@@ -28,7 +28,11 @@ static void	ft_draw_elements(t_game *game, int x, int y)
 				game->item.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 	else if (game->map.map[x][y] == 'E')
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
-				game->exit.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+				game->closed_door.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+	else if (game->map.map[x][y] == 'E'
+			&& game->player.items_recollected == game->map.collected_item)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
+				game->closed_door.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 }
 
 static int	ft_is_valid_element(t_game *game, char element)
@@ -97,10 +101,10 @@ int	ft_draw_map(t_game *game)
 		return (0);
 	if (!ft_check_number_elements(game))
 		return (0);
-	ft_element_pos(game);
 	if (!ft_check_pathfinder(game, &game->player.pos_player))
 		return (0);
 	i = 0;
+	ft_element_pos(game);
 	while (i < game->map.height)
 	{
 		j = 0;
@@ -111,5 +115,7 @@ int	ft_draw_map(t_game *game)
 		}
 		i++;
 	}
+	printf("pos player x %d - y %d\n", game->player.pos_player.x,
+			game->player.pos_player.y);
 	return (1);
 }

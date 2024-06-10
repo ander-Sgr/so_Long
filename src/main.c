@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 20:35:01 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/09 20:38:55 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:43:57 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int	main(void)
 			free(game.mlx.mlx_ptr);
 		}
 		if (ft_init_images(&game) && ft_draw_map(&game))
+		{
+			mlx_key_hook(game.mlx.win_ptr, handle_keypress, &game);
 			mlx_loop(game.mlx.mlx_ptr);
+		}
 	}
 }

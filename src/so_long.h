@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/10 00:56:59 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:50:20 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_game
 	t_img		character;
 	t_img		item;
 	t_img		exit;
+	t_img		closed_door;
 }				t_game;
 
 t_game			*ft_init_map(char *file_map, t_game *game);
@@ -103,6 +104,8 @@ int				ft_is_valid_map(t_game *game, char *file_map);
 int				ft_check_pathfinder(t_game *game, t_pos *start_pos);
 t_game			*ft_element_pos(t_game *game);
 int				ft_check_elements_map(t_game *game);
+void			ft_draw_elements(t_game *game, int x, int y);
+void			ft_update_player_position(t_game *game, int new_x, int new_y);
 
 void			ft_init_wall(t_game *game);
 void			ft_init_floor(t_game *game);
