@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 21:28:12 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/11 21:41:31 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:05:22 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,7 @@ void	ft_update_player_position(t_game *game, int new_x, int new_y)
 	game->map.map[new_y][new_x] = 'P';
 	ft_draw_elements(game, new_y, new_x);
 	ft_load_exit(game);
+	if (game->player.current_tile == 'E'
+		&& game->map.item_count == game->player.items_recollected)
+		ft_end_game(game);
 }
