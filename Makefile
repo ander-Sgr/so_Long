@@ -6,16 +6,29 @@
 #    By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 23:19:11 by aestrell          #+#    #+#              #
-#    Updated: 2024/06/06 17:45:56 by aestrell         ###   ########.fr        #
+#    Updated: 2024/06/12 23:11:04 by aestrell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS = ./src/main.c ./src/read_map.c ./src/draw_map.c ./src/xpm_utils.c  ./src/map_validations.c ./src/element_pos.c ./src/check_pathfinder.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
+SRCS = ./src/main.c  \
+		./src/read_map.c \
+		./src/draw_map.c  \
+		./src/xpm_utils.c	\
+		./src/map_validations.c \
+		./src/element_pos.c \
+		./src/check_pathfinder.c \
+		./src/init_images.c \
+		./src/init_vars.c \
+		./src/event_keys.c \
+		./src/clear_game.c \
+		./src/init_game.c \
+		./gnl/get_next_line.c \
+		./gnl/get_next_line_utils.c \
 
 CC = gcc
-CFLAGS = -Wall -Wextra 
+CFLAGS = -Wall -Wextra
 
 OBJS = ${SRCS:.c=.o}
 
