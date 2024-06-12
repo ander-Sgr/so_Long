@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 23:07:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/09 20:37:33 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/11 22:19:31 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int	ft_check_map_format(t_game *game)
 	while (i < game->map.height)
 	{
 		len_line = strlen(game->map.map[i]);
-		if (len_line != game->map.width + 1 &&
-			game->map.map[i][len_line - 1] == '\n')
+		if (len_line != game->map.width + 1 && game->map.map[i][len_line
+			- 1] == '\n')
 			return (0);
 		j = 0;
 		while (j < game->map.width)
@@ -54,6 +54,7 @@ static int	ft_check_map_format(t_game *game)
 	}
 	return (1);
 }
+
 static int	ft_check_borders_map(t_game *game)
 {
 	int	i;
@@ -80,6 +81,21 @@ static int	ft_check_borders_map(t_game *game)
 	return (1);
 }
 
+int	ft_validate_path(t_game *game, int item_count, int exit_count)
+{
+	if (item_count != game->map.collected_item)
+	{
+		printf("Error: No captureable elements\n");
+		return (0);
+	}
+	if (exit_count != game->map.found_exit)
+	{
+		printf("Error: Cannot find a valid exit\n");
+		return (0);
+	}
+	return (1);
+}
+
 int	ft_is_valid_map(t_game *game, char *file_map)
 {
 	if (!ft_is_valid_ext(file_map))
@@ -101,8 +117,3 @@ int	ft_is_valid_map(t_game *game, char *file_map)
 		return (0);
 	return (1);
 }
-/*
-	todo una funcion que haga todas las comprobaciones..
-	if (el formato de mapa es true) if (la ext es true) etc etc
-
-¡*/
