@@ -6,13 +6,13 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 19:43:16 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/10 17:46:10 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:56:57 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_init_wall(t_game *game)
+int	ft_init_wall(t_game *game)
 {
 	game->wall.img_ptr = NULL;
 	game->wall.img_path = NULL;
@@ -23,9 +23,10 @@ void	ft_init_wall(t_game *game)
 	game->wall.bits_per_pixel = 0;
 	game->wall.size_line = 0;
 	game->wall.endian = 0;
+	return (1);
 }
 
-void	ft_init_floor(t_game *game)
+int	ft_init_floor(t_game *game)
 {
 	game->floor.img_ptr = NULL;
 	game->floor.img_path = NULL;
@@ -36,9 +37,10 @@ void	ft_init_floor(t_game *game)
 	game->floor.bits_per_pixel = 0;
 	game->floor.size_line = 0;
 	game->floor.endian = 0;
+	return (1);
 }
 
-void	ft_init_character(t_game *game)
+int	ft_init_character(t_game *game)
 {
 	game->character.img_ptr = NULL;
 	game->character.img_path = NULL;
@@ -49,9 +51,10 @@ void	ft_init_character(t_game *game)
 	game->character.bits_per_pixel = 0;
 	game->character.size_line = 0;
 	game->character.endian = 0;
+	return (1);
 }
 
-void	ft_init_item(t_game *game)
+int	ft_init_item(t_game *game)
 {
 	game->item.img_ptr = NULL;
 	game->item.img_path = NULL;
@@ -62,9 +65,10 @@ void	ft_init_item(t_game *game)
 	game->item.bits_per_pixel = 0;
 	game->item.size_line = 0;
 	game->item.endian = 0;
+	return (1);
 }
 
-void	ft_init_exit(t_game *game)
+int	ft_init_exit(t_game *game)
 {
 	game->exit.img_ptr = NULL;
 	game->exit.img_path = NULL;
@@ -75,6 +79,11 @@ void	ft_init_exit(t_game *game)
 	game->exit.bits_per_pixel = 0;
 	game->exit.size_line = 0;
 	game->exit.endian = 0;
+	return (1);
+}
+
+int	ft_init_closed_door(t_game *game)
+{
 	game->closed_door.img_ptr = NULL;
 	game->closed_door.img_path = NULL;
 	game->closed_door.addr = NULL;
@@ -84,4 +93,5 @@ void	ft_init_exit(t_game *game)
 	game->closed_door.bits_per_pixel = 0;
 	game->closed_door.size_line = 0;
 	game->closed_door.endian = 0;
+	return (1);
 }

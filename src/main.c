@@ -6,39 +6,33 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 20:35:01 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/10 23:12:59 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:06:46 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_game	game;
-	int		tile_width;
-	int		tile_height;
-	char	*file_map;
+	t_game	*game;
 
-	file_map = "./maps/map1.ber";
-	ft_init_vars(&game);
-	game.mlx.mlx_ptr = mlx_init();
-	if (game.mlx.mlx_ptr == NULL)
-		printf("Error initializing MLX\n");
-	if (ft_init_map(file_map, &game))
+	if (argc != 2)
 	{
-		tile_width = game.map.width * TILE_SIZE;
-		tile_height = game.map.height * TILE_SIZE;
-		game.mlx.win_ptr = mlx_new_window(game.mlx.mlx_ptr, tile_width,
-				tile_height, "so_long");
-		if (game.mlx.win_ptr == NULL)
-		{
-			printf("Error creating window\n");
-			free(game.mlx.mlx_ptr);
-		}
-		if (ft_init_images(&game) && ft_draw_map(&game))
-		{
-			mlx_key_hook(game.mlx.win_ptr, handle_keypress, &game);
-			mlx_loop(game.mlx.mlx_ptr);
-		}
+		printf("Error: %s <map_file>\n", argv[0]);
+		return (1);
 	}
+	game = malloc(sizeof(t_game));
+	if (!game)
+	{
+		printf("Error allocating memory\n");
+		return (1);
+	}
+	if (!ft_init_vars(game))
+	{
+		printf("Error: Init variables\n");
+		ft_end_game(game);
+	}
+	ft_start_game(game, argv[1]);
+	ft_end_game(game);
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 19:37:27 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/10 22:49:39 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:57:52 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_init_map_vars(t_game *game)
+static int	ft_init_map_vars(t_game *game)
 {
 	game->map.map = NULL;
 	game->map.width = 0;
@@ -22,35 +22,52 @@ static void	ft_init_map_vars(t_game *game)
 	game->map.item_count = 0;
 	game->map.found_exit = 0;
 	game->map.collected_item = 0;
+	return (1);
 }
 
-static void	ft_init_mlx_vars(t_game *game)
+static int	ft_init_mlx_vars(t_game *game)
 {
 	game->mlx.mlx_ptr = NULL;
 	game->mlx.win_ptr = NULL;
+	return (1);
 }
 
-static void	ft_init_player_vars(t_game *game)
+static int	ft_init_player_vars(t_game *game)
 {
 	game->player.pos_player.x = 0;
 	game->player.pos_player.y = 0;
 	game->player.items_recollected = 0;
 	game->player.mov_count = 0;
 	game->player.current_tile = ' ';
-}
-static void	ft_init_images_vars(t_game *game)
-{
-	ft_init_wall(game);
-	ft_init_floor(game);
-	ft_init_character(game);
-	ft_init_item(game);
-	ft_init_exit(game);
+	return (1);
 }
 
-void	ft_init_vars(t_game *game)
+static int	ft_init_images_vars(t_game *game)
 {
-	ft_init_mlx_vars(game);
-	ft_init_player_vars(game);
-	ft_init_map_vars(game);
-	ft_init_images_vars(game);
+	if (!ft_init_wall(game))
+		return (0);
+	if (!ft_init_floor(game))
+		return (0);
+	if (!ft_init_character(game))
+		return (0);
+	if (!ft_init_item(game))
+		return (0);
+	if (!ft_init_exit(game))
+		return (0);
+	if (!ft_init_closed_door(game))
+		return (0);
+	return (1);
+}
+
+int	ft_init_vars(t_game *game)
+{
+	if (!ft_init_mlx_vars(game))
+		return (0);
+	if (!ft_init_player_vars(game))
+		return (0);
+	if (!ft_init_map_vars(game))
+		return (0);
+	if (!ft_init_images_vars(game))
+		return (0);
+	return (1);
 }

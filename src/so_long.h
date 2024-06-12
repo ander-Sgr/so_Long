@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/11 00:42:26 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:05:56 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,20 @@ t_game			*ft_element_pos(t_game *game);
 int				ft_check_elements_map(t_game *game);
 void			ft_draw_elements(t_game *game, int x, int y);
 void			ft_update_player_position(t_game *game, int new_x, int new_y);
+void			ft_cleanup_map(t_game *game);
+int				ft_validate_path(t_game *game, int item_count, int exit_count);
+int				ft_end_game(t_game *game);
+void			ft_mlx_closing(t_game *game);
+void			ft_start_game(t_game *game, char *file_map);
 
-void			ft_init_wall(t_game *game);
-void			ft_init_floor(t_game *game);
-void			ft_init_character(t_game *game);
-void			ft_init_item(t_game *game);
-void			ft_init_exit(t_game *game);
+int				ft_init_wall(t_game *game);
+int				ft_init_floor(t_game *game);
+int				ft_init_character(t_game *game);
+int				ft_init_item(t_game *game);
+int				ft_init_exit(t_game *game);
+int				ft_init_closed_door(t_game *game);
 
-void			ft_init_vars(t_game *game);
+int				ft_init_vars(t_game *game);
 
 int				handle_keypress(int keysym, t_game *data);
 
