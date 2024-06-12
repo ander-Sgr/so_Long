@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:46:42 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/11 00:28:53 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/11 22:17:21 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 void	ft_draw_elements(t_game *game, int x, int y)
 {
 	if (game->map.map[x][y] == '1')
-		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
-				game->wall.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+		game->wall.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 	else if (game->map.map[x][y] == '0')
-		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
-				game->floor.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+		game->floor.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 	else if (game->map.map[x][y] == 'P')
-		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
-				game->character.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+		game->character.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 	else if (game->map.map[x][y] == 'C')
-		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
-				game->item.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+		game->item.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 	else if (game->map.map[x][y] == 'E')
 	{
 		if (game->map.item_count == game->player.items_recollected)
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
-					game->exit.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+			game->exit.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 		else
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
-					game->closed_door.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
+			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+			game->closed_door.img_ptr, y * TILE_SIZE, x * TILE_SIZE);
 	}
 }
 
@@ -117,7 +117,5 @@ int	ft_draw_map(t_game *game)
 		}
 		i++;
 	}
-	printf("item_count_ draw map %d\n", game->map.item_count);
-	printf("item_count_ draw map %d\n", game->player.items_recollected);
 	return (1);
 }

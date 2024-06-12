@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 20:58:37 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/10 21:25:46 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/11 23:49:07 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	handle_keypress(int keycode, t_game *game)
 	new_y = game->player.pos_player.y;
 	if (keycode == K_ESC)
 	{
-		mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_ptr);
+		ft_end_game(game);
 		exit(EXIT_SUCCESS);
 	}
 	else if (keycode == K_W)
