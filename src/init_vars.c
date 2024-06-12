@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 19:37:27 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/12 21:57:52 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:19:30 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ static int	ft_init_images_vars(t_game *game)
 	if (!ft_init_item(game))
 		return (0);
 	if (!ft_init_exit(game))
-		return (0);
-	if (!ft_init_closed_door(game))
 		return (0);
 	return (1);
 }

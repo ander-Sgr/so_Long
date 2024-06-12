@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 19:43:16 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/12 21:56:57 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:20:37 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,6 @@ int	ft_init_exit(t_game *game)
 	game->exit.bits_per_pixel = 0;
 	game->exit.size_line = 0;
 	game->exit.endian = 0;
-	return (1);
-}
-
-int	ft_init_closed_door(t_game *game)
-{
 	game->closed_door.img_ptr = NULL;
 	game->closed_door.img_path = NULL;
 	game->closed_door.addr = NULL;

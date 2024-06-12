@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 00:05:56 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 01:19:49 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ int				ft_init_floor(t_game *game);
 int				ft_init_character(t_game *game);
 int				ft_init_item(t_game *game);
 int				ft_init_exit(t_game *game);
-int				ft_init_closed_door(t_game *game);
 
 int				ft_init_vars(t_game *game);
 
