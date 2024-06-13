@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:30:25 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 23:17:08 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:22:09 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_init_mlx(t_game *game)
 		ft_end_game(game);
 	}
 }
+
 void	ft_init_window(t_game *game)
 {
 	int	tile_width;
@@ -56,8 +57,8 @@ void	ft_start_game(t_game *game, char *file_map)
 	if (ft_init_images(game) && ft_draw_map(game))
 	{
 		mlx_key_hook(game->mlx.win_ptr, handle_keypress, game);
-		mlx_hook(game->mlx.win_ptr, ClientMessage, LeaveWindowMask, ft_end_game,
-				game);
+		mlx_hook(game->mlx.win_ptr, ClientMessage, LeaveWindowMask,
+			ft_end_game, game);
 		mlx_loop(game->mlx.mlx_ptr);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 20:35:01 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 23:07:54 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:21:12 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int	main(int argc, char **argv)
 		ft_end_game(game);
 	}
 	ft_start_game(game, argv[1]);
-
 	return (0);
 }

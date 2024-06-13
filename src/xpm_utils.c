@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:06:00 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 23:08:31 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:20:58 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static int	ft_check_errors_xpm(t_game *game)
 	free(images);
 	return (1);
 }
+
 static int	ft_load_xpm(t_game *game, t_img *img, char *file_path)
 {
 	img->img_ptr = mlx_xpm_file_to_image(game->mlx.mlx_ptr, file_path,
@@ -92,11 +93,11 @@ static int	ft_load_xpm(t_game *game, t_img *img, char *file_path)
 
 t_game	*ft_init_images(t_game *game)
 {
-	if (!ft_load_xpm(game, &game->wall, "./textures/wall.xpm") ||
-		!ft_load_xpm(game, &game->floor, "./textures/floor.xpm") ||
-		!ft_load_xpm(game, &game->character, "./textures/character.xpm") ||
-		!ft_load_xpm(game, &game->item, "./textures/item.xpm") ||
-		!ft_load_xpm(game, &game->exit, "./textures/exit.xpm") ||
+	if (!ft_load_xpm(game, &game->wall, "./textures/wall.xpm") || \
+		!ft_load_xpm(game, &game->floor, "./textures/floor.xpm") || \
+		!ft_load_xpm(game, &game->character, "./textures/character.xpm") || \
+		!ft_load_xpm(game, &game->item, "./textures/item.xpm") || \
+		!ft_load_xpm(game, &game->exit, "./textures/exit.xpm") || \
 		!ft_load_xpm(game, &game->closed_door, "./textures/closed_door.xpm"))
 	{
 		ft_check_errors_xpm(game);
