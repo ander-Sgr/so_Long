@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:23:14 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/11 22:20:08 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:12:24 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_check_pathfinder(t_game *game, t_pos *start_pos)
 	i = 0;
 	while (i < game->map.height)
 	{
-		visited[i] = (int *)calloc(game->map.width, sizeof(int));
+		visited[i] = (int *)ft_calloc(game->map.width, sizeof(int));
 		if (!visited[i])
 		{
 			ft_clean_visited_pos(game, visited);

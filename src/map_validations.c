@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 23:07:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/11 22:19:31 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:08:16 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int	ft_validate_path(t_game *game, int item_count, int exit_count)
 {
 	if (item_count != game->map.collected_item)
 	{
-		printf("Error: No captureable elements\n");
+		ft_printf("Error: No captureable elements\n");
 		return (0);
 	}
 	if (exit_count != game->map.found_exit)
 	{
-		printf("Error: Cannot find a valid exit\n");
+		ft_printf("Error: Cannot find a valid exit\n");
 		return (0);
 	}
 	return (1);
@@ -100,17 +100,17 @@ int	ft_is_valid_map(t_game *game, char *file_map)
 {
 	if (!ft_is_valid_ext(file_map))
 	{
-		printf("Error: Verify the type of file\n");
+		ft_printf("Error: Verify the type of file\n");
 		return (0);
 	}
 	if (!ft_check_map_format(game))
 	{
-		printf("Error: Invalid map!\n");
+		ft_printf("Error: Invalid map!\n");
 		return (0);
 	}
 	if (!ft_check_borders_map(game))
 	{
-		printf("Error: The map should be sorrounded by walls\n");
+		ft_printf("Error: The map should be sorrounded by walls\n");
 		return (0);
 	}
 	if (!ft_element_pos(game))

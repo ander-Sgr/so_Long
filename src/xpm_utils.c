@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:06:00 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 01:21:02 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:08:31 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	ft_check_errors_xpm(t_game *game)
 	if (err_count > 0)
 	{
 		ft_clean_xpm(game, images, img_count);
-		printf("Could not load all xpm files\n");
+		ft_printf("Could not load all xpm files\n");
 		free(images);
 		return (0);
 	}

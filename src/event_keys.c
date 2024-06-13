@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 20:58:37 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 01:21:29 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:07:32 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_show_move_counter(t_game *game)
 {
-	printf("You have taken a total of %d steps\n", game->player.mov_count);
+	ft_printf("You have taken a total of %d steps\n", game->player.mov_count);
 }
 
 int	ft_move_handle_keypress(int keycode, int *new_x, int *new_y)

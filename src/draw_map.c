@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:46:42 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/11 22:17:21 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:04:28 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	ft_is_valid_element(t_game *game, char element)
 		game->map.item_count++;
 	if (!strchr(valid_elements, element))
 	{
-		printf("Error: elements on the map are \
+		ft_printf("Error: elements on the map are \
 			not valid! verify just content 10PCE\n");
 		return (0);
 	}
@@ -76,7 +76,7 @@ int	ft_check_elements_map(t_game *game)
 	}
 	if (game->map.character_count > 1 || game->map.exit_count > 1)
 	{
-		printf("Error: Verify the number of players & exits:\n");
+		ft_printf("Error: Verify the number of players & exits:\n");
 		return (0);
 	}
 	return (1);
@@ -87,7 +87,7 @@ static int	ft_check_number_elements(t_game *game)
 	if (game->map.character_count < 1 || game->map.exit_count < 1
 		|| game->map.item_count < 1)
 	{
-		printf("Error: The should contain \
+		ft_printf("Error: The should contain \
 		a minimum 1 player 1 exit & 1 item\n");
 		return (0);
 	}

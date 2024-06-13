@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 01:01:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/11 21:55:50 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:12:03 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_get_map_dimensions(char *file_map, t_game *game)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		width = strlen(line);
+		width = ft_strlen(line);
 		height++;
 		free(line);
 	}
@@ -58,7 +58,7 @@ static char	**ft_read_map(char *file_map, t_game *game)
 	{
 		line = get_next_line(fd);
 		if (line)
-			game->map.map[i] = strdup(line);
+			game->map.map[i] = ft_strdup(line);
 		free(line);
 		i++;
 	}
