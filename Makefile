@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/01 23:19:11 by aestrell          #+#    #+#              #
-#    Updated: 2024/06/12 23:11:04 by aestrell         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = so_long
 
 SRCS = ./src/main.c  \
@@ -27,43 +15,79 @@ SRCS = ./src/main.c  \
 		./gnl/get_next_line.c \
 		./gnl/get_next_line_utils.c \
 
+HDRS = ./include/so_long.h \
+       ./include/other_header.h \
+       ./gnl/get_next_line.h \
+
 CC = gcc
-CFLAGS = -Wall -Wextra
-
-OBJS = ${SRCS:.c=.o}
-
-ifeq ($(shell uname), Linux)
-	INCLUDES = -I/usr/include -Imlx
-else
-	INCLUDES = -I/opt/x11/include -Imlx
-endif
+CFLAGS = -Wall -Wextra -Werror
 
 MLX_DIR = ./mlx
 MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
+
+LIBFT_DIR = ./libft
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
+
+PRINTF_DIR = ./ft_printf
+PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
+
+OBJS = ${SRCS:.c=.o}
+
+GREEN = \033[0;32m
+RESET = \033[0m
+
+ifeq ($(shell uname), Linux)
+	INCLUDES = -I/usr/include -Imlx -I$(LIBFT_DIR) -I./include
+else
+	INCLUDES = -I/opt/x11/include -Imlx -I$(LIBFT_DIR) -I./include
+endif
+
 ifeq ($(shell uname), Linux)
 	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 else
 	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
-all: $(MLX_LIB) $(NAME)
+all: $(MLX_LIB) $(LIBFT_LIB) $(PRINTF_LIB) $(NAME)
 
-.c.o:
+.c.o: $(HDRS) Makefile
+	@echo "$(GREEN)Compiling $< ...$(RESET)"
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
+	@echo "$(GREEN)Linking objects ...$(RESET)"
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT_LIB) $(PRINTF_LIB)
+	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
 $(MLX_LIB):
+	@echo "$(GREEN)Building mlx library ...$(RESET)"
 	@make -C $(MLX_DIR)
+	@echo "$(GREEN)mlx library built.$(RESET)"
 
-.PHONY: all clean fclean re
+$(LIBFT_LIB):
+	@echo "$(GREEN)Building libft library ...$(RESET)"
+	@make -C $(LIBFT_DIR)
+	@echo "$(GREEN)libft library built.$(RESET)"
+
+$(PRINTF_LIB):
+	@echo "$(GREEN)Building ft_printf library ...$(RESET)"
+	@make -C $(PRINTF_DIR)
+	@echo "$(GREEN)ft_printf libreary built.$(RESET)"
 
 clean:
+	@echo "$(GREEN)Cleaning object files ...$(RESET)"
 	rm -f $(OBJS)
 	@make -C $(MLX_DIR) clean
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(PRINTF_DIR) clean
+	@echo "$(GREEN)Object files cleaned.$(RESET)"
 
 fclean: clean
+	@echo "$(GREEN)Cleaning all ...$(RESET)"
 	rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(PRINTF_DIR) fclean
+	@echo "$(GREEN)All cleaned.$(RESET)"
 
 re: fclean all
+	@echo "$(GREEN)Rebuilding ...$(RESET)"

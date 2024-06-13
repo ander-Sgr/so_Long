@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 22:53:10 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 01:19:49 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:03:43 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 # include "../mlx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
