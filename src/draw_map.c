@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:46:42 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 23:04:28 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:47:56 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ft_is_valid_element(t_game *game, char element)
 		game->map.exit_count++;
 	if (element == 'C')
 		game->map.item_count++;
-	if (!strchr(valid_elements, element))
+	if (!ft_strchr(valid_elements, element))
 	{
 		ft_printf("Error: elements on the map are \
 			not valid! verify just content 10PCE\n");

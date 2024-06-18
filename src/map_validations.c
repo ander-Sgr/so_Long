@@ -6,7 +6,7 @@
 /*   By: aestrell <aestrell@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 23:07:06 by aestrell          #+#    #+#             */
-/*   Updated: 2024/06/13 23:08:16 by aestrell         ###   ########.fr       */
+/*   Updated: 2024/06/16 14:40:40 by aestrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	ft_is_valid_ext(char *file_map)
 	ext = ".ber";
 	if (file_map == NULL)
 		return (0);
-	result = strrchr(file_map, dot);
-	if (result != NULL && strcmp(ext, result) == 0)
+	result = ft_strrchr(file_map, dot);
+	if (result != NULL && ft_strncmp(ext, result, ft_strlen(ext) + 1) == 0)
 	{
 		return (1);
 	}
@@ -39,7 +39,7 @@ static int	ft_check_map_format(t_game *game)
 	i = 0;
 	while (i < game->map.height)
 	{
-		len_line = strlen(game->map.map[i]);
+		len_line = ft_strlen(game->map.map[i]);
 		if (len_line != game->map.width + 1 && game->map.map[i][len_line
 			- 1] == '\n')
 			return (0);
